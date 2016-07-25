@@ -7,7 +7,6 @@ var algorithmia = require("algorithmia");
 var request = require('request');
 var zlib = require("zlib");
 var mime = require("mime");
-var date = new Date();
 
 app.set('port', (process.env.PORT || 5000));
 app.use(compression());
@@ -19,7 +18,7 @@ app.get('/download', function (req, res) {
     var query = req.query.file;
     var referer = req.header('Referer');
 
-    console.log("[GET] ", query, date.getTime());
+    console.log("[GET] ", query);
 
 
     if (referer.indexOf("http://ouo.io") > -1) {
