@@ -7,7 +7,7 @@ var request = require('request');
 var mime = require('mime');
 var zlib = require("zlib");
 var date = new Date();
-var url = ["http://ouo.io/I1Mzz", "http://ouo.io/CsuQIS"];
+var url = ["http://ouo.io/adTcEO", "http://ouo.io/CsuQIS"];
 
 app.set('port', (process.env.PORT || 5000));
 app.use(compression());
