@@ -19,7 +19,8 @@ app.get('/download', function (req, res) {
     var query = req.query.file;
     var referer = req.header('Referer');
 
-    if (referer.indexOf("http://ouo.io") > -1) {
+    if (referer.indexOf("ouo.io") > -1) {
+        
         if (query === "POKEMON_GO_MOD.APK" || query === "HUONG_DAN.RAR") {
 
             var file = __dirname + '/upload/' + query;
