@@ -6,6 +6,8 @@ var fs = require('fs');
 var algorithmia = require("algorithmia");
 var request = require('request');
 var zlib = require("zlib");
+var mime = require("mime");
+var date = new Date();
 
 app.set('port', (process.env.PORT || 5000));
 app.use(compression());
@@ -16,11 +18,39 @@ app.use('/', express.static(__dirname + '/public'));
 app.get('/download', function (req, res) {
     var query = req.query.file;
     var referer = req.header('Referer');
-    if (referer.indexOf("http://ouo.io") > -1) {
 
+    console.log("[GET] ", query, date.getTime());
+
+
+    if (referer.indexOf("http://ouo.io") > -1) {
+        if (query === "POKEMON_GO_MOD.APK" || query === "HUONG_DAN.RAR") {
+
+            var file = __dirname + '/upload/' + query;
+            var filename = path.basename(file);
+            var mimetype = mime.lookup(file);
+
+            res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+            res.setHeader('Content-type', mimetype);
+
+            var filestream = fs.createReadStream(file);
+            filestream.pipe(res);
+        }
     }
     else {
-        res.send("OK");
+        var url = ["http://ouo.io/I1Mzz", "http://ouo.io/CsuQIS"];
+
+        if (query === "POKEMON_GO_MOD.APK") {
+            res.writeHead(302, {
+                'Location': url[0]
+            });
+            res.end();
+        }
+        if (query === "HUONG_DAN.RAR") {
+            res.writeHead(302, {
+                'Location': url[1]
+            });
+            res.end();
+        }
     }
 });
 
