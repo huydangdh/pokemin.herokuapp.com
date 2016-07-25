@@ -10,8 +10,8 @@
     "express": "^4.13.3",
     "body-parser": "*",
     "compression": "*",
-    "algorithmia": "*",
-    "request": "*"
+    "request": "*",
+    "referrer": "*"
   },
   "engines": {
     "node": "4.0.0"
